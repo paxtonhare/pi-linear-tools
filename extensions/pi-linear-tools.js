@@ -10,7 +10,7 @@ import { isPiCodingAgentRoot, findPiCodingAgentRoot, importFromPiRoot, parseArgs
 
 async function importPiCodingAgent() {
   try {
-    return await import('@mariozechner/pi-coding-agent');
+    return await import('@earendil-works/pi-coding-agent');
   } catch {
     return importFromPiRoot('dist/index.js');
   }
@@ -18,10 +18,10 @@ async function importPiCodingAgent() {
 
 async function importPiTui() {
   try {
-    return await import('@mariozechner/pi-tui');
+    return await import('@earendil-works/pi-tui');
   } catch {
     // pi-tui is a dependency of pi-coding-agent and may be nested under it
-    return importFromPiRoot('node_modules/@mariozechner/pi-tui/dist/index.js');
+    return importFromPiRoot('node_modules/@earendil-works/pi-tui/dist/index.js');
   }
 }
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Use current Pi host package imports and wildcard peers for Pi 1.1 compatibility, preserving optional rendering fallbacks.
+
 ## v0.6.0 (2026-04-23)
 
 Rate-limit resilience for milestone operations.

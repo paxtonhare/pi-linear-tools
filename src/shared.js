@@ -18,7 +18,7 @@ export function isPiCodingAgentRoot(dir) {
   if (!fs.existsSync(pkgPath)) return false;
   try {
     const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-    return pkg?.name === '@mariozechner/pi-coding-agent';
+    return pkg?.name === '@earendil-works/pi-coding-agent';
   } catch {
     return false;
   }
@@ -46,11 +46,11 @@ export function findPiCodingAgentRoot() {
   }
 
   // Method 2: npm global layout guess (works when argv1 is .../<prefix>/bin/pi)
-  // <prefix>/bin/pi  ->  <prefix>/lib/node_modules/@mariozechner/pi-coding-agent
+  // <prefix>/bin/pi  ->  <prefix>/lib/node_modules/@earendil-works/pi-coding-agent
   {
     const binDir = path.dirname(entry);
     const prefix = path.resolve(binDir, '..');
-    const candidate = path.join(prefix, 'lib', 'node_modules', '@mariozechner', 'pi-coding-agent');
+    const candidate = path.join(prefix, 'lib', 'node_modules', '@earendil-works', 'pi-coding-agent');
     if (isPiCodingAgentRoot(candidate)) {
       return candidate;
     }
@@ -58,8 +58,8 @@ export function findPiCodingAgentRoot() {
 
   // Method 3: common global node_modules locations
   for (const candidate of [
-    '/usr/local/lib/node_modules/@mariozechner/pi-coding-agent',
-    '/usr/lib/node_modules/@mariozechner/pi-coding-agent',
+    '/usr/local/lib/node_modules/@earendil-works/pi-coding-agent',
+    '/usr/lib/node_modules/@earendil-works/pi-coding-agent',
   ]) {
     if (isPiCodingAgentRoot(candidate)) {
       return candidate;
@@ -77,7 +77,7 @@ export function findPiCodingAgentRoot() {
 export async function importFromPiRoot(relativePathFromPiRoot) {
   const piRoot = findPiCodingAgentRoot();
 
-  if (!piRoot) throw new Error('Unable to locate @mariozechner/pi-coding-agent installation');
+  if (!piRoot) throw new Error('Unable to locate @earendil-works/pi-coding-agent installation');
 
   const absPath = path.join(piRoot, relativePathFromPiRoot);
   return import(pathToFileURL(absPath).href);
